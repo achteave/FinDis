@@ -1,0 +1,27 @@
+.pagebm {
+    background-image: url(../Home/bg.png);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.listitem {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 700px;
+    height: 40px;
+    background-color: aqua;
+    margin-top: 10px;
+    max-width: 50vh;
+}
+
+.bmword {
+    text-decoration: none;
+    text-transform: capitalize;
+}
+
+.bmback {
+    color: white;
+}
