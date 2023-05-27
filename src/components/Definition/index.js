@@ -8,7 +8,6 @@ const Definition = ({ bookmarks, addBookmark, removeBookmark }) => {
   const { word } = useParams();
   const navigate = useNavigate();
   const [definitions, setDefinitions] = useState([]);
-  const [meanings, setMeanings] = useState([]);
   const [exist, setExist] = useState(true);
   const [audio, setAudio] = useState(null);
   const [showMeanings, setShowMeanings] = useState(false);
@@ -60,7 +59,7 @@ const Definition = ({ bookmarks, addBookmark, removeBookmark }) => {
               <div>
                 <div>
                   <button onClick={() => navigate(-1)}>
-                    <img src="#" className="defback" />
+                    <img src="#" className="defback" alt="back" />
                   </button>
                 </div>
               </div>
@@ -70,7 +69,7 @@ const Definition = ({ bookmarks, addBookmark, removeBookmark }) => {
                     {word}
                     {audio && (
                       <button className="playaudio" onClick={() => audio.play()}>
-                        <img src="" className="play" />
+                        <img src="" className="play" alt="playau"/>
                       </button>
                     )}
                     <button
@@ -78,7 +77,7 @@ const Definition = ({ bookmarks, addBookmark, removeBookmark }) => {
                         isBookmarked ? removeBookmark(word) : addBookmark(word, definitions)
                       }
                     >
-                      {isBookmarked ? <img src="#" className="defbookm" /> : <img src="" className="defbookm" />}
+                      {isBookmarked ? <img src="#" className="defbookm" alt="bookmark"/> : <img src="" className="defbookm" alt="bookmark"/>}
                     </button>
                   </h4>
                 </div>
