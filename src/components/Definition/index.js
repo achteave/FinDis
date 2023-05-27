@@ -1,7 +1,6 @@
 import { useState, useEffect, Fragment } from "react";
-import { Container, Typography, Box, IconButton, Divider, CircularProgress } from "@material-ui/core";
-import { ArrowBack as BackIcon, BookmarkBorder as BookmarkIcon, Bookmark as BookmarkedIcon, PlayArrow as PlayIcon } from "@material-ui/icons";
 import { useParams, useNavigate } from "react-router-dom";
+import { Divider } from "@mui/material";
 import axios from "axios";
 import "./style.css";
 
@@ -47,133 +46,138 @@ const Definition = ({ bookmarks, addBookmark, removeBookmark }) => {
   if (!exist)
     return (
       <>
-        <Typography>Word not found</Typography>
-        <IconButton onClick={() => navigate(-1)}>Go Back</IconButton>
+      <div className="not-found">
+        <h2>Word not found</h2>
+        <button onClick={() => navigate(-1)}>Go Back</button>
+        </div>
       </>
     );
-  //if (!definitions.length) return <><div className="loading"><CircularProgress /></div></>
-
-  return (
-    <div className="definition">
-      <div className="overlay">
-      <Container className="defcontainer">
-        <Container>
-          <Container>
-            <IconButton onClick={() => navigate(-1)}>
-              <BackIcon className="defback" />
-            </IconButton>
-            <IconButton
-              onClick={() =>
-                isBookmarked ? removeBookmark(word) : addBookmark(word, definitions)
-              }
-            >
-              {isBookmarked ? <BookmarkedIcon className="defbookm"/> : <BookmarkIcon className="defbookm"/>}
-            </IconButton>
-          </Container>
-        </Container>
-        <Container className="contents">
-          <Container className="">
-            <Typography variant="h4" className="word">
-              {word}
-              {audio && (
-                <IconButton className="playaudio" onClick={() => audio.play()}>
-                  <PlayIcon className="play" />
-                </IconButton>
-              )}
-            </Typography>
-          </Container>
-        </Container>
-
-        <Container className="details">
-          <Container className="detail0">
-            <Typography variant="h6" onClick={() => setShowMeanings(!showMeanings)}>
-              Meanings  <span style={{ fontStyle: "italic", fontSize: "0.5em", marginLeft: "55px" }}>
-                        {showMeanings ? "Hide" : "Show"}
-                        </span>{" "}
-            </Typography>
-            {showMeanings && (
-              <>
-                {definitions.map((def, idx) => (
-                  <Fragment key={idx}>
-                    <Divider />
-                    {def.meanings.map((meaning) => (
-                      <Box key={meaning.partOfSpeech}>
-                        <Typography variant="h6">{meaning.partOfSpeech}</Typography>
-                        {meaning.definitions.map((definition, idx) => (
-                          <Typography key={definition.definition}>
-                            {idx + 1}. {definition.definition}
-                          </Typography>
+  
+    return (
+        <div className="definition">
+          <div className="overlay">
+            <div className="defcontainer">
+              <div>
+                <div>
+                  <button onClick={() => navigate(-1)}>
+                    <img src="#" className="defback" />
+                  </button>
+                </div>
+              </div>
+              <div className="contents">
+                <div className="">
+                  <h4 className="word">
+                    {word}
+                    {audio && (
+                      <button className="playaudio" onClick={() => audio.play()}>
+                        <img src="" className="play" />
+                      </button>
+                    )}
+                    <button
+                      onClick={() =>
+                        isBookmarked ? removeBookmark(word) : addBookmark(word, definitions)
+                      }
+                    >
+                      {isBookmarked ? <img src="#" className="defbookm" /> : <img src="" className="defbookm" />}
+                    </button>
+                  </h4>
+                </div>
+              </div>
+            </div>
+      
+            <div className="details">
+              <div className="detail0">
+                <h2 onClick={() => setShowMeanings(!showMeanings)}>
+                  Meanings{" "}
+                  <span style={{ fontStyle: "italic", fontSize: "0.5em", marginLeft: "55px" }}>
+                    {showMeanings ? "Hide" : "Show"}
+                  </span>{" "}
+                </h2>
+                {showMeanings && (
+                  <>
+                    {definitions.map((def, idx) => (
+                      <Fragment key={idx}>
+                        <br />
+                        <Divider />
+                        {def.meanings.map((meaning) => (
+                          <div key={meaning.partOfSpeech}>
+                            <h4>{meaning.partOfSpeech}</h4>
+                            {meaning.definitions.map((definition, idx) => (
+                              <p key={definition.definition}>
+                                {idx + 1}. {definition.definition}
+                              </p>
+                            ))} <br />
+                          </div>
                         ))}
-                      </Box>
+                      </Fragment>
                     ))}
-                  </Fragment>
-                ))}
-              </>
-            )}
-          </Container>
-          <Divider />
+                  </>
+                )}
+              </div>
+              <Divider />
+            
+                <div className="detail0">
+                <h3 onClick={() => setShowSynonyms(!showSynonyms)}>
+                    Synonyms  <span style={{ fontStyle: "italic", fontSize: "0.5em", marginLeft: "50px" }}>
+                            {showSynonyms ? "Hide" : "Show"}
+                            </span>{" "}
+                </h3>
+                {showSynonyms && (
+                    <>
+                    <br />
+                    {definitions.map((def, idx) => (
+                        <Fragment key={idx}>
+                        {def.meanings.map((meaning) => (
+                            <div key={meaning.partOfSpeech}>
+                            <div>
+                                {meaning.synonyms.map((synonym, idx) => (
+                                <Fragment key={idx}>
+                                    {synonym}
+                                    {idx !== meaning.synonyms.length - 1 && ", "}
+                                </Fragment>
+                                ))}
+                            </div> <br />
+                            </div>
+                        ))}
+                        </Fragment>
+                    ))}
+                    </>
+                )}
+                </div>
+                <Divider />
 
-          <Container className="detail0">
-            <Typography variant="h6" onClick={() => setShowSynonyms(!showSynonyms)}>
-              Synonyms  <span style={{ fontStyle: "italic", fontSize: "0.5em", marginLeft: "50px" }}>
-                        {showSynonyms ? "Hide" : "Show"}
-                        </span>{" "}
-            </Typography>
-            {showSynonyms && (
-              <>
-                {definitions.map((def, idx) => (
-                  <Fragment key={idx}>
-                    {def.meanings.map((meaning) => (
-                      <Box key={meaning.partOfSpeech}>
-                        <Typography>
-                          {meaning.synonyms.map((synonym, idx) => (
-                            <Fragment key={idx}>
-                              {synonym}
-                              {idx !== meaning.synonyms.length - 1 && ", "}
-                            </Fragment>
-                          ))}
-                        </Typography>
-                      </Box>
+                <div className="detail0">
+                <h3 onClick={() => setShowAntonyms(!showAntonyms)}>
+                    Antonyms  <span style={{ fontStyle: "italic", fontSize: "0.5em", marginLeft: "50px" }}>
+                            {showAntonyms ? "Hide" : "Show"}
+                            </span>{" "}
+                </h3>
+                {showAntonyms && (
+                    <>
+                    {definitions.map((def, idx) => (
+                        <Fragment key={idx}>
+                        {def.meanings.map((meaning) => (
+                            <div key={meaning.partOfSpeech}>
+                            <p>
+                                {meaning.antonyms.map((antonym, idx) => (
+                                <Fragment key={idx}>
+                                    {antonym}
+                                    {idx !== meaning.antonyms.length - 1 && ", "}
+                                </Fragment>
+                                ))}
+                            </p>
+                            </div>
+                        ))}
+                        </Fragment>
                     ))}
-                  </Fragment>
-                ))}
-              </>
-            )}
-          </Container>
-          <Divider />
-
-          <Container className="detail0">
-            <Typography variant="h6" onClick={() => setShowAntonyms(!showAntonyms)}>
-              Antonyms  <span style={{ fontStyle: "italic", fontSize: "0.5em", marginLeft: "50px" }}>
-                        {showAntonyms ? "Hide" : "Show"}
-                        </span>{" "}
-            </Typography>
-            {showAntonyms && (
-              <>
-                {definitions.map((def, idx) => (
-                  <Fragment key={idx}>
-                    {def.meanings.map((meaning) => (
-                      <Box key={meaning.partOfSpeech}>
-                        <Typography>
-                          {meaning.antonyms.map((antonym, idx) => (
-                            <Fragment key={idx}>
-                              {antonym}
-                              {idx !== meaning.antonyms.length - 1 && ", "}
-                            </Fragment>
-                          ))}
-                        </Typography>
-                      </Box>
-                    ))}
-                  </Fragment>
-                ))}
-              </>
-            )}
-          </Container>
-        </Container>
-      </Container>
-      </div>
-    </div>
-  );
+                    </>
+                )}
+                </div>
+            </div>
+          </div>
+        </div>
+      );
+      
 };
 
 export default Definition;
