@@ -11,7 +11,7 @@ const App = () => {
   return (
     <div>
       <buutton className="" onClick={() => navigate(-1)}>
-        <img src='' className='' />
+        <img src='#' className='auback' alt='back'/>
       </buutton>
       <div className="row">
         <h1>Our Team</h1>
@@ -25,18 +25,6 @@ const App = () => {
             <h3>M. Affransyah Bayulaksana</h3>
             <p>Leader</p>
             <div className="icons">
-              <a href="#">
-                <i className="fab fa-twitter"></i>
-              </a>
-              <a href="#">
-                <i className="fab fa-linkedin"></i>
-              </a>
-              <a href="#">
-                <i className="fab fa-github"></i>
-              </a>
-              <a href="#">
-                <i className="fas fa-envelope"></i>
-              </a>
             </div>
           </div>
         </div>
@@ -48,18 +36,6 @@ const App = () => {
             <h3>Nurul Azizah</h3>
             <p>Member</p>
             <div className="icons">
-              <a href="#">
-                <i className="fab fa-twitter"></i>
-              </a>
-              <a href="#">
-                <i className="fab fa-linkedin"></i>
-              </a>
-              <a href="#">
-                <i className="fab fa-github"></i>
-              </a>
-              <a href="#">
-                <i className="fas fa-envelope"></i>
-              </a>
             </div>
           </div>
         </div>
@@ -71,18 +47,6 @@ const App = () => {
             <h3>Victorich Albert</h3>
             <p>Member</p>
             <div className="icons">
-              <a href="#">
-                <i className="fab fa-twitter"></i>
-              </a>
-              <a href="#">
-                <i className="fab fa-linkedin"></i>
-              </a>
-              <a href="#">
-                <i className="fab fa-github"></i>
-              </a>
-              <a href="#">
-                <i className="fas fa-envelope"></i>
-              </a>
             </div>
           </div>
         </div>
@@ -94,18 +58,6 @@ const App = () => {
             <h3>Daffa Althaf Maulana</h3>
             <p>Member</p>
             <div className="icons">
-              <a href="#">
-                <i className="fab fa-twitter"></i>
-              </a>
-              <a href="#">
-                <i className="fab fa-linkedin"></i>
-              </a>
-              <a href="#">
-                <i className="fab fa-github"></i>
-              </a>
-              <a href="#">
-                <i className="fas fa-envelope"></i>
-              </a>
             </div>
           </div>
         </div>
