@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
-import logo from "./logo-0.png"
+import logo from "./logo-0.png";
 import "./style.css";
 
 const Home = () => {
