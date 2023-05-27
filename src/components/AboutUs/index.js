@@ -2,9 +2,7 @@ import './style.css';
 import franz from './assets/anz.png';
 import azizah from './assets/jijeh.png'
 import daffa from './assets/atap.jpg'
-import victor from './assets/tor.jpg'
-import { Icon, IconButton } from '@material-ui/core';
-import { ArrowBack } from '@material-ui/icons';
+import victor from './assets/tor.jpg';
 import { useNavigate } from 'react-router-dom';
 
 const App = () => {
@@ -12,9 +10,9 @@ const App = () => {
 
   return (
     <div>
-      <IconButton onClick={() => navigate(-1)}>
-        <ArrowBack />
-      </IconButton>
+      <buutton className="" onClick={() => navigate(-1)}>
+        <img src='' className='' />
+      </buutton>
       <div className="row">
         <h1>Our Team</h1>
       </div>
