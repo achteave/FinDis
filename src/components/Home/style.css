@@ -1,3 +1,10 @@
+.logo {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  width: 200px;
+  height: 200px;
+}
+
 .container {
     background-color: #212121;
     display: flex;
@@ -17,33 +24,34 @@
     background-color: #212121;
     border-radius: 20px;
     box-shadow: 0em 1em 3em #beecdc64;
-    width: 500px;
-    height: 480px;
+    width: 550px;
+    height: 550px;
 }
 
 .caption {
     margin-top: 10px;
     text-align: center;
+    padding-bottom: 30px;
 }
 
 .searchinput {
-    margin-top: 20px;
-    max-width: 190px;
-    height: 100%;
+    max-width: 200px;
+    height: 150%;
     outline: none;
-    font-size: 14px;
+    font-size: 15px;
     font-weight: 500;
     background-color: #53535f;
     caret-color: #f7f7f8;
     color: #fff;
-    padding: 7px 10px;
+    padding: 9px 50px;
     border: 2px solid transparent;
     border-top-left-radius: 7px;
     border-bottom-left-radius: 7px;
     margin-right: 1px;
     transition: all .2s ease;
-
-    
+    margin-top: 20px;
+    margin-bottom: 30px;
+    padding-left: 10px;
 }
 
 .searchinput:hover {
@@ -64,11 +72,27 @@
 }
 
 .bmicon {
-    color: black;
-    margin-top: 5px;
-    background-color: #93deff;
-    width: 100px;
-    border-radius: 2px;
+    margin-top: 10px;
+    background-color: #53535f;
+    color: #212121;
+    width: 35px;
+    height: 35px;
+    border-radius: 7px;
+    max-width: 500px;
+    align-items: center;
+    margin-bottom: 10px;
+    border: none;
+}
+
+.bmicon .bmbtn {
+    width: 35px;
+    height: 35px;
+    align-items: center;
+}
+
+.bmicon:hover {
+  background-color: rgba(54, 54, 56, 1);
+  color: whitesmoke;
 }
 
 .search__btn {
@@ -83,6 +107,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    height: 150%;
+    margin-bottom: 30px;
   }
   
   .search__btn:hover {
