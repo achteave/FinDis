@@ -1,5 +1,3 @@
-import { IconButton, Typography, Box } from "@material-ui/core";
-import { ArrowBack as BackIcon } from "@material-ui/icons";
 import { Link, useNavigate } from "react-router-dom";
 import "./style.css";
 
@@ -11,12 +9,14 @@ const Bookmark = ({ bookmarks }) => {
       <div className="overlay">
         <div className="pagebm">
           <div className="bookmark">
-              <IconButton onClick={() => navigate(-1)}>
-                <BackIcon className="bmback" />
-              </IconButton>
+            <div className="list">
+              <button onClick={() => navigate(-1)}>
+                <img src="#" className="bmback" />
+              </button>
               <div className="title">
-                <Typography variant="h6">Bookmarks</Typography>
+                <h6>Bookmarks</h6>
               </div>
+            </div>
               <div className="bmlist">
                 {Object.keys(bookmarks).length ? (
                   Object.keys(bookmarks).map((b) => (
@@ -31,7 +31,7 @@ const Bookmark = ({ bookmarks }) => {
                     </button>
                   ))
                 ) : (
-                  <Typography>No Bookmarks</Typography>
+                  <p>No Bookmarks</p>
                 )}
               </div>
             </div>
