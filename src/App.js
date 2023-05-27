@@ -1,6 +1,4 @@
 import { useState, useEffect } from "react";
-import { ThemeProvider, CssBaseline, Grid, Container, Typography } from "@material-ui/core";
-import theme from "./theme";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Home from "./components/Home";
 import Bookmarks from "./components/Bookmarks";
@@ -27,10 +25,9 @@ const App = () => {
     });
 
   return (
-    <ThemeProvider theme={theme}>
-      <CssBaseline />
-      <Grid container>
-        <Grid item xs={12}>
+    <div>
+      <div container>
+        <div item xs={12}>
           <Router>
             <Routes>
               <Route path="/" element={<Home />}></Route>
@@ -42,9 +39,9 @@ const App = () => {
               <Route path="/aboutus" element={<AboutUs />}></Route>
             </Routes>
           </Router>
-        </Grid>
-      </Grid>
-    </ThemeProvider>
+        </div>
+      </div>
+    </div>
   );
 };
 
