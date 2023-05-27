@@ -1,13 +1,10 @@
-import { Typography, FilledInput, IconButton, useTheme, Container, colors } from "@material-ui/core";
-import { Search as SearchIcon, Bookmark as BookmarkIcon } from "@material-ui/icons";
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
-import logo from "./book.png"
+import logo from "./logo-0.png"
 import "./style.css";
 
 const Home = () => {
   const [word, setWord] = useState("");
-  const theme = useTheme();
   const navigate = useNavigate();
 
   function handleSubmit(event) {
@@ -27,9 +24,9 @@ const Home = () => {
     <div className="container">
       <div className="items">
         <img src={logo} alt="LOGO" className="logo" />
-        <Typography className="caption">
+        <p className="caption">
           Find a word's meaning, synonym, and antonym all at once and save it for future reference
-        </Typography>
+        </p>
           <form onSubmit={handleSubmit} className="form">
             <input
               value={word}
@@ -39,14 +36,14 @@ const Home = () => {
               placeholder="Search Word"
               autoComplete="off"
             ></input>
-            <button class="search__btn" onClick={handleSearchClick}>
-            <SearchIcon className="search_icon"/>
+            <button type="submit" className="search__btn">
+                <img src="#" className="search_icon" />
             </button>
           </form>
         <Link to="/bookmarks">
-          <IconButton to="/bookmarks" component={Link}>
-            <BookmarkIcon className="bmicon" />
-          </IconButton>
+          <button to="/bookmarks" component={Link}>
+            <img src="" className="bmicon" />
+          </button>
         </Link><br />
         <p>UpToU Group - <Link className="toabout" to={"/aboutus"}>About Us</Link></p>
       </div>
