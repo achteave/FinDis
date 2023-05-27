@@ -14,12 +14,6 @@ const Home = () => {
     navigate(`/search/${trimmedWord}`);
   }
 
-  function handleSearchClick() {
-    const trimmedWord = word.trim().toLowerCase();
-    if (!trimmedWord || trimmedWord.split(" ").length > 1) return;
-    navigate(`/search/${trimmedWord}`);
-  }
-
   return (
     <div className="container">
       <div className="items">
@@ -37,12 +31,12 @@ const Home = () => {
               autoComplete="off"
             ></input>
             <button type="submit" className="search__btn">
-                <img src="#" className="search_icon" />
+                <img src="#" className="search_icon" alt="seabutton"/>
             </button>
           </form>
         <Link to="/bookmarks">
           <button to="/bookmarks" component={Link}>
-            <img src="" className="bmicon" />
+            <img src="" className="bmicon" alt="bookmark"/>
           </button>
         </Link><br />
         <p>UpToU Group - <Link className="toabout" to={"/aboutus"}>About Us</Link></p>
