@@ -11,7 +11,7 @@ const Bookmark = ({ bookmarks }) => {
           <div className="bookmark">
             <div className="list">
               <button onClick={() => navigate(-1)}>
-                <img src="#" className="bmback" />
+                <img src="#" className="bmback" alt="back"/>
               </button>
               <div className="title">
                 <h6>Bookmarks</h6>
