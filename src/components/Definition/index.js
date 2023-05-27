@@ -40,7 +40,7 @@ const Definition = ({ bookmarks, addBookmark, removeBookmark }) => {
 
     if (!isBookmarked) fetchDefinition();
     else updateState(bookmarks[word]);
-  }, []);
+  }, [bookmarks, isBookmarked, word]);
 
   if (!exist)
     return (
