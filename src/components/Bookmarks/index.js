@@ -1,4 +1,5 @@
 import { Link, useNavigate } from "react-router-dom";
+import back from "../Assets/back.png";
 import "./style.css";
 
 const Bookmark = ({ bookmarks }) => {
@@ -10,11 +11,9 @@ const Bookmark = ({ bookmarks }) => {
         <div className="pagebm">
           <div className="bookmark">
             <div className="list">
-              <button onClick={() => navigate(-1)}>
-                <img src="#" className="bmback" alt="back"/>
-              </button>
+                <img src={back} className="bmback" alt="back"onClick={() => navigate(-1)} />
               <div className="title">
-                <h6>Bookmarks</h6>
+                <h2 className="titlebm">Bookmarks</h2>
               </div>
             </div>
               <div className="bmlist">
@@ -37,6 +36,17 @@ const Bookmark = ({ bookmarks }) => {
             </div>
         </div>
       </div>
+      <footer class="footer-distributed">
+
+			<div class="footer-left">
+
+				<p class="footer-links">
+          <Link className="tohome" to={"/"}>Home</Link>
+					<Link className="toabout" to={"/aboutus"}>About Us</Link>
+				</p>
+				<p>UpToU Group &copy; 2023</p>
+			</div>
+		</footer>
     </div>
   );
 };
