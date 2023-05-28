@@ -59,6 +59,13 @@
 
 .bmback {
     color: white;
+    width: 35px;
+    height: 35px;
+    margin-top: 35px;
+}
+
+.bmback:hover {
+    cursor: pointer;
 }
 
 .bmlist {
@@ -83,4 +90,8 @@
 
 .bookmark {
     margin-left: 1px;
+}
+
+.titlebm {
+    padding: 20px;
 }
