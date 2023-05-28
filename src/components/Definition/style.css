@@ -19,7 +19,7 @@
   
   .contents {
     box-shadow: 0em 0em 1em #8aaea264;
-    background: linear-gradient(to bottom right, #93deff, black);
+    background: linear-gradient(to bottom right, #93deff, #494a4a);
     display: flex;
     flex-direction: column;
     align-items: left; /* Center horizontally */
