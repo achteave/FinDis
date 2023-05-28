@@ -2,6 +2,10 @@ import { useState, useEffect, Fragment } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { Divider } from "@mui/material";
 import axios from "axios";
+import playau from "../Assets/play.png"
+import bookmark from "../Assets/bmoutwhite.png";
+import bookmarked from "../Assets/bmallwhite.png";
+import back from "../Assets/back.png";
 import "./style.css";
 
 const Definition = ({ bookmarks, addBookmark, removeBookmark }) => {
@@ -58,40 +62,35 @@ const Definition = ({ bookmarks, addBookmark, removeBookmark }) => {
             <div className="defcontainer">
               <div>
                 <div>
-                  <button onClick={() => navigate(-1)}>
-                    <img src="#" className="defback" alt="back" />
-                  </button>
-                </div>
-              </div>
-              <div className="contents">
-                <div className="">
-                  <h4 className="word">
-                    {word}
-                    {audio && (
-                      <button className="playaudio" onClick={() => audio.play()}>
-                        <img src="" className="play" alt="playau"/>
-                      </button>
-                    )}
-                    <button
-                      onClick={() =>
-                        isBookmarked ? removeBookmark(word) : addBookmark(word, definitions)
-                      }
-                    >
-                      {isBookmarked ? <img src="#" className="defbookm" alt="bookmark"/> : <img src="" className="defbookm" alt="bookmark"/>}
-                    </button>
-                  </h4>
+                    <img src={back} className="defback" alt="back" onClick={() => navigate(-1)}/>
                 </div>
               </div>
             </div>
+            <div className="contents">
+                <div className="">
+                  <h2 className="word">
+                    {word}
+                    {audio && (
+                       
+                        <img src={playau} className="play" alt="playau" onClick={() => audio.play()}/>
+                    )}
+                    <img src={isBookmarked ? bookmarked : bookmark} className="defbookm" alt="bookmark" onClick={() =>
+                          isBookmarked ? removeBookmark(word) : addBookmark(word, definitions)
+                        }
+                      />
+
+                  </h2>
+                </div>
+              </div>
       
             <div className="details">
               <div className="detail0">
-                <h2 onClick={() => setShowMeanings(!showMeanings)}>
+                <h3 onClick={() => setShowMeanings(!showMeanings)}>
                   Meanings{" "}
                   <span style={{ fontStyle: "italic", fontSize: "0.5em", marginLeft: "55px" }}>
                     {showMeanings ? "Hide" : "Show"}
                   </span>{" "}
-                </h2>
+                </h3>
                 {showMeanings && (
                   <>
                     {definitions.map((def, idx) => (
@@ -123,7 +122,6 @@ const Definition = ({ bookmarks, addBookmark, removeBookmark }) => {
                 </h3>
                 {showSynonyms && (
                     <>
-                    <br />
                     {definitions.map((def, idx) => (
                         <Fragment key={idx}>
                         {def.meanings.map((meaning) => (
@@ -135,7 +133,7 @@ const Definition = ({ bookmarks, addBookmark, removeBookmark }) => {
                                     {idx !== meaning.synonyms.length - 1 && ", "}
                                 </Fragment>
                                 ))}
-                            </div> <br />
+                            </div>
                             </div>
                         ))}
                         </Fragment>
