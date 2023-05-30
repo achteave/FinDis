@@ -18,6 +18,7 @@ const Home = () => {
 
   return (
     <div className="container">
+      <div className="overlay">
       <div className="items">
         <img src={logo} alt="LOGO" className="logo" />
         <p className="caption">
@@ -53,6 +54,7 @@ const Home = () => {
 			</div>
 
 		</footer>
+    </div>
     </div>
   );
 };
