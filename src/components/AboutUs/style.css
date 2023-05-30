@@ -1,4 +1,3 @@
- 
   .about {
     background-image: url(./bg.png);
     height: 100vh;
@@ -30,13 +29,12 @@
   .card {
     box-shadow: 0 0 2.4em rgba(25, 0, 58, 0.1);
     padding: 3.5em 1em;
-    
+    max-width: 100%;
     border-radius: 0.6em;
     color: white;
     cursor: pointer;
     transition: 0.3s;
     background-color: #212121;
-    width: 100%; 
     margin-bottom: 1em; 
   }
   
