@@ -17,6 +17,9 @@ const Definition = ({ bookmarks, addBookmark, removeBookmark }) => {
   const [showMeanings, setShowMeanings] = useState(false);
   const [showSynonyms, setShowSynonyms] = useState(false);
   const [showAntonyms, setShowAntonyms] = useState(false);
+  const [hasSynonyms, setHasSynonyms] = useState(true);
+  const [hasAntonyms, setHasAntonyms] = useState(true);
+  
 
   const isBookmarked = Object.keys(bookmarks).includes(word);
 
@@ -37,10 +40,19 @@ const Definition = ({ bookmarks, addBookmark, removeBookmark }) => {
         if (!phonetics.length) return;
         const url = phonetics[0].audio.replace("//ssl", "https://ssl");
         setAudio(new Audio(url));
+    
+        // Check if synonyms and antonyms are available
+        const synonymsAvailable = resp.data.some(def => def.meanings.some(meaning => meaning.synonyms.length > 0));
+        const antonymsAvailable = resp.data.some(def => def.meanings.some(meaning => meaning.antonyms.length > 0));
+
+        setHasSynonyms(synonymsAvailable);
+        setHasAntonyms(antonymsAvailable);
       } catch (err) {
         setExist(false);
       }
     };
+    
+    
 
     if (!isBookmarked) fetchDefinition();
     else updateState(bookmarks[word]);
@@ -70,10 +82,16 @@ const Definition = ({ bookmarks, addBookmark, removeBookmark }) => {
                 <div className="">
                   <h2 className="word">
                     {word}
-                    {audio && (
-                       
-                        <img src={playau} className="play" alt="playau" onClick={() => audio.play()}/>
-                    )}
+                    {audio ? (
+                    <img src={playau} className="play" alt="playau" onClick={() => {
+                      if (audio.src) {
+                        audio.play();
+                      } else {
+                        console.warn("There's no audio pronunciation available for this word.");
+                      }
+                    }} />
+                  ) : null
+                  }
                     <img src={isBookmarked ? bookmarked : bookmark} className="defbookm" alt="bookmark" onClick={() =>
                           isBookmarked ? removeBookmark(word) : addBookmark(word, definitions)
                         }
@@ -113,63 +131,70 @@ const Definition = ({ bookmarks, addBookmark, removeBookmark }) => {
                 )}
               </div>
               <Divider />
-            
-                <div className="detail0">
+              <div className="detail0">
                 <h3 onClick={() => setShowSynonyms(!showSynonyms)}>
-                    Synonyms  <span style={{ fontStyle: "italic", fontSize: "0.5em", marginLeft: "50px" }}>
-                            {showSynonyms ? "Hide" : "Show"}
-                            </span>{" "}
+                  Synonyms{" "}
+                  <span style={{ fontStyle: "italic", fontSize: "0.5em", marginLeft: "50px" }}>
+                    {showSynonyms ? "Hide" : (hasSynonyms || isBookmarked) ? "Show" : "Unavailable"}
+                  </span>{" "}
                 </h3>
-                {showSynonyms && (
-                    <>
+                {showSynonyms && hasSynonyms && (
+                  <>
                     {definitions.map((def, idx) => (
-                        <Fragment key={idx}>
+                      <Fragment key={idx}>
                         {def.meanings.map((meaning) => (
-                            <div key={meaning.partOfSpeech}>
+                          <div key={meaning.partOfSpeech}>
                             <div>
-                                {meaning.synonyms.map((synonym, idx) => (
+                              {meaning.synonyms.map((synonym, idx) => (
                                 <Fragment key={idx}>
-                                    {synonym}
-                                    {idx !== meaning.synonyms.length - 1 && ", "}
+                                  {synonym}
+                                  {idx !== meaning.synonyms.length - 1 && ", "}
                                 </Fragment>
-                                ))}
+                              ))}
                             </div>
-                            </div>
+                          </div>
                         ))}
-                        </Fragment>
+                      </Fragment>
                     ))}
-                    </>
+                  </>
                 )}
-                </div>
-                <Divider />
+                {(isBookmarked && !hasSynonyms) && (
+                  <p>No synonyms available.</p>
+                )}
+              </div>
+              <Divider />
 
-                <div className="detail0">
+              <div className="detail0">
                 <h3 onClick={() => setShowAntonyms(!showAntonyms)}>
-                    Antonyms  <span style={{ fontStyle: "italic", fontSize: "0.5em", marginLeft: "50px" }}>
-                            {showAntonyms ? "Hide" : "Show"}
-                            </span>{" "}
+                  Antonyms{" "}
+                  <span style={{ fontStyle: "italic", fontSize: "0.5em", marginLeft: "50px" }}>
+                    {showAntonyms ? "Hide" : (hasAntonyms || isBookmarked) ? "Show" : "Unavailable"}
+                  </span>{" "}
                 </h3>
-                {showAntonyms && (
-                    <>
+                {showAntonyms && hasAntonyms && (
+                  <>
                     {definitions.map((def, idx) => (
-                        <Fragment key={idx}>
+                      <Fragment key={idx}>
                         {def.meanings.map((meaning) => (
-                            <div key={meaning.partOfSpeech}>
+                          <div key={meaning.partOfSpeech}>
                             <p>
-                                {meaning.antonyms.map((antonym, idx) => (
+                              {meaning.antonyms.map((antonym, idx) => (
                                 <Fragment key={idx}>
-                                    {antonym}
-                                    {idx !== meaning.antonyms.length - 1 && ", "}
+                                  {antonym}
+                                  {idx !== meaning.antonyms.length - 1 && ", "}
                                 </Fragment>
-                                ))}
+                              ))}
                             </p>
-                            </div>
+                          </div>
                         ))}
-                        </Fragment>
+                      </Fragment>
                     ))}
-                    </>
+                  </>
                 )}
-                </div>
+                {(isBookmarked && !hasAntonyms) && (
+                  <p>No antonyms available.</p>
+                )}
+              </div>
             </div>
           </div>
         </div>
